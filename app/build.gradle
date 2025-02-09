@@ -1,0 +1,70 @@
+plugins {
+    alias(libs.plugins.android.application)
+    alias(libs.plugins.kotlin.android)
+    alias(libs.plugins.compose.compiler)
+}
+
+android {
+    namespace 'com.towertex.nba'
+    compileSdk compile_sdk_version
+
+    defaultConfig {
+        applicationId "com.towertex.nba"
+        minSdk min_sdk_version
+        targetSdk target_sdk_version
+        versionCode 1
+        versionName "1.0"
+
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_17
+        targetCompatibility JavaVersion.VERSION_17
+    }
+
+    kotlinOptions {
+        jvmTarget = '17'
+    }
+}
+
+dependencies {
+    api project(path: ':NBAModel')
+
+    //material
+    implementation libs.material
+    implementation libs.compose.material
+
+    //paging
+    implementation libs.paging.runtime
+    implementation libs.paging.compose
+
+    //Koin
+    implementation libs.koin.compose
+
+    //navigation
+    implementation libs.navigation.compose
+
+    //glide
+    implementation libs.glide
+
+    //compose
+    implementation libs.compose.ui
+    implementation libs.compose.preview
+
+    //lifecycle
+    implementation libs.lifecycle
+    implementation libs.activity.compose
+
+    //MockK unit testing
+    testImplementation libs.mockk
+    testImplementation libs.junit
+    testImplementation libs.kotlinx.coroutines.test
+}

@@ -1,0 +1,26 @@
+<resources>
+    <string name="app_name">TowertexNBA</string>
+    <string name="unknown">LOADING</string>
+
+    <!--PlayerCard-->
+    <string name="pc_name">%s %s</string>
+    <string name="pc_position">%s at %s</string>
+    <string name="pc_index">%d/%d</string>
+
+    <!--PlayerDetail-->
+    <string name="pd_name">@string/pc_name</string>
+    <string name="pd_position">- is playing as %s at %s team.</string>
+    <string name="pd_body">- has height %s and weight %s.</string>
+    <string name="pd_number">- has jersey number %s.</string>
+    <string name="pd_college">- has studied at %s in %s.</string>
+    <string name="pd_draft">- was drafted in %d at round %d as number %d.</string>
+
+    <!--TeamDetail-->
+    <string name="td_full_name">Team %s</string>
+    <string name="td_name">- also known as %s.</string>
+    <string name="td_short_name">- abbreviated to %s.</string>
+    <string name="td_city">- is located at %s.</string>
+    <string name="td_division">- is currently playing in %s at %s division.</string>
+    <string name="td_logo_url">https://a.espncdn.com/combiner/i?img=/i/teamlogos/nba/500/%s.png</string>
+
+</resources>
