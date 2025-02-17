@@ -4,9 +4,10 @@ import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
-import androidx.compose.material.Card
-import androidx.compose.material.MaterialTheme
-import androidx.compose.material.Text
+import androidx.compose.material3.Card
+import androidx.compose.material3.CardDefaults
+import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.dimensionResource
@@ -28,24 +29,58 @@ fun PlayerCard(
     val playerPosition: String = viewModel.position.collectAsStateWithLifecycle().value
     val playerIndex: String = viewModel.index.collectAsStateWithLifecycle().value
 
+    PlayerCardView(
+        onClick = { onClick(playerId) },
+        playerName = playerName,
+        playerPosition = playerPosition,
+        playerIndex = playerIndex,
+    )
+}
+
+@Composable
+fun PlayerCardView(
+    onClick: () -> Unit,
+    playerName: String,
+    playerPosition: String,
+    playerIndex: String,
+) {
     Card(
-        elevation = dimensionResource(R.dimen.card_elevation),
+        elevation = CardDefaults.cardElevation(dimensionResource(R.dimen.card_elevation)),
         modifier = Modifier
             .fillMaxWidth()
             .padding(dimensionResource(R.dimen.card_margin))
-            .clickable { onClick(playerId) },
+            .clickable { onClick() },
+        colors = CardDefaults.cardColors(MaterialTheme.colorScheme.primaryContainer),
     ) {
         Column(modifier = Modifier.padding(dimensionResource(R.dimen.card_padding))) {
-            Text(text = playerName, style = MaterialTheme.typography.h6)
-            Text(text = playerPosition, style = MaterialTheme.typography.body1)
-            Text(text = playerIndex, style = MaterialTheme.typography.subtitle1,
-                textAlign = TextAlign.End, modifier = Modifier.fillMaxWidth())
+            Text(
+                text = playerName,
+                style = MaterialTheme.typography.titleSmall,
+                color = MaterialTheme.colorScheme.onPrimaryContainer,
+            )
+            Text(
+                text = playerPosition,
+                style = MaterialTheme.typography.bodySmall,
+                color = MaterialTheme.colorScheme.onPrimaryContainer,
+            )
+            Text(
+                text = playerIndex,
+                style = MaterialTheme.typography.labelSmall,
+                color = MaterialTheme.colorScheme.onPrimaryContainer,
+                textAlign = TextAlign.End,
+                modifier = Modifier.fillMaxWidth(),
+            )
         }
     }
 }
 
 @Preview(showBackground = true)
 @Composable
-fun PlayerCardPreview() {
-    PlayerCard(1, onClick = {})
+fun PlayerCardViewPreview() {
+    PlayerCardView(
+        onClick = {},
+        playerName = "Player Name",
+        playerPosition = "Position",
+        playerIndex = "Index",
+    )
 }
