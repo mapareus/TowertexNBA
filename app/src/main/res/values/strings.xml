@@ -14,6 +14,8 @@
     <string name="pd_number">- has jersey number %s.</string>
     <string name="pd_college">- has studied at %s in %s.</string>
     <string name="pd_draft">- was drafted in %d at round %d as number %d.</string>
+    <string name="pd_button_back">Back</string>
+    <string name="pd_button_next">View Team</string>
 
     <!--TeamDetail-->
     <string name="td_full_name">Team %s</string>

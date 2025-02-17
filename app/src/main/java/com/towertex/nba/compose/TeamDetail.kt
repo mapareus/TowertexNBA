@@ -7,9 +7,10 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
-import androidx.compose.material.Button
-import androidx.compose.material.MaterialTheme
-import androidx.compose.material.Text
+import androidx.compose.material3.Button
+import androidx.compose.material3.ButtonDefaults
+import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.layout.ContentScale
@@ -50,14 +51,17 @@ fun TeamDetail(
             modifier = Modifier.fillMaxWidth()
         )
         Spacer(modifier = Modifier.height(dimensionResource(R.dimen.card_padding)))
-        Text(text = fullName, style = MaterialTheme.typography.h4)
-        Text(text = name, style = MaterialTheme.typography.h5)
-        Text(text = shortName, style = MaterialTheme.typography.h6)
+        Text(text = fullName, style = MaterialTheme.typography.titleLarge)
+        Text(text = name, style = MaterialTheme.typography.titleMedium)
+        Text(text = shortName, style = MaterialTheme.typography.titleSmall)
         Spacer(modifier = Modifier.height(dimensionResource(R.dimen.card_padding)))
-        Text(text = city, style = MaterialTheme.typography.body1)
-        Text(text = division, style = MaterialTheme.typography.body1)
+        Text(text = city, style = MaterialTheme.typography.bodyLarge)
+        Text(text = division, style = MaterialTheme.typography.bodyMedium)
         Spacer(modifier = Modifier.height(dimensionResource(R.dimen.card_padding)))
-        Button(onClick = onBack) { Text(text = "Back") }
+        Button(
+            onClick = onBack,
+            colors = ButtonDefaults.buttonColors(MaterialTheme.colorScheme.inverseSurface),
+        ) { Text(text = "Back") }
     }
 }
 

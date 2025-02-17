@@ -1,7 +1,7 @@
 plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.kotlin.android)
-    alias(libs.plugins.compose.compiler)
+    alias(libs.plugins.kotlin.compose)
 }
 
 android {
@@ -39,7 +39,6 @@ dependencies {
     api project(path: ':NBAModel')
 
     //material
-    implementation libs.material
     implementation libs.compose.material
 
     //paging
@@ -57,7 +56,8 @@ dependencies {
 
     //compose
     implementation libs.compose.ui
-    implementation libs.compose.preview
+    implementation libs.compose.tooling.preview
+    debugImplementation libs.compose.tooling
 
     //lifecycle
     implementation libs.lifecycle
