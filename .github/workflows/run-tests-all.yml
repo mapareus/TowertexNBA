@@ -1,0 +1,58 @@
+name: Run All Unit Tests
+
+on:
+  pull_request:
+    branches:
+      - main
+  workflow_dispatch:
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      - name: Set up JDK 17
+        uses: actions/setup-java@v3
+        with:
+          java-version: '17'
+          distribution: 'temurin'
+
+      - name: Grant execute permission for gradlew
+        run: chmod +x gradlew
+
+      - name: Run unit tests on NBAApi module
+        run: ./gradlew testDebugUnitTest --project-dir NBAApi
+
+      - name: Upload test results from NBAApi module
+        uses: actions/upload-artifact@v4
+        with:
+          name: test-results-api
+          path: NBAApi/build/test-results/testDebugUnitTest
+
+      - name: Publish test results from NBAApi module
+        uses: EnricoMi/publish-unit-test-result-action@v2
+        with:
+          files: NBAApi/build/test-results/testDebugUnitTest/*.xml
+          check_name: Unit Test Results of NBAApi module
+          comment_title: Unit Test Results of NBAApi module
+          update_comment: true
+
+      - name: Run unit tests on app module
+        run: ./gradlew testDebugUnitTest --project-dir app
+
+      - name: Upload test results from app module
+        uses: actions/upload-artifact@v4
+        with:
+          name: test-results-app
+          path: app/build/test-results/testDebugUnitTest
+
+      - name: Publish test results from app module
+        uses: EnricoMi/publish-unit-test-result-action@v2
+        with:
+          files: app/build/test-results/testDebugUnitTest/*.xml
+          check_name: Unit Test Results of app module
+          comment_title: Unit Test Results of app module
+          update_comment: true
